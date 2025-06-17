@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from rabbitmq_worker import RabbitMQWorker
+from processor.rabbitmqworker import RabbitMQWorker
 
 # Configure logging
 logging.basicConfig(
