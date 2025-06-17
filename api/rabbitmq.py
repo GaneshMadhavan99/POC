@@ -68,11 +68,11 @@ class RabbitMQClient:
             if not self.channel or self.channel.is_closed:
                 await self.connect()
 
-            logger.info("📥 Consuming messages from output_queue...")
+            logger.info("Consuming messages from output_queue...")
             async with self.output_queue.iterator() as queue_iter:
                 async for message in queue_iter:
                     async with message.process():
-                        logger.info(f"✅ Received from output_queue: {message.body.decode()[:100]}...")
+                        logger.info(f"Received from output_queue: {message.body.decode()[:100]}...")
                         yield message
 
         except Exception as e:
@@ -84,6 +84,6 @@ class RabbitMQClient:
         try:
             if self.connection and not self.connection.is_closed:
                 await self.connection.close()
-                logger.info("🔌 RabbitMQ connection closed.")
+                logger.info("RabbitMQ connection closed.")
         except Exception as e:
             logger.warning(f"Error closing RabbitMQ connection: {e}")
